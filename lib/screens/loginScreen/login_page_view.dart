@@ -19,20 +19,19 @@ class LoginPageView extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         child: Center(
           child: ElevatedButton(
-            onPressed: () async {
-              final SharedPreferences preferences =
-                  await SharedPreferences.getInstance();
-              await preferences
-                  .setBool('register', true)
-                  .then((_) => Navigator.pushReplacement(
+              child: const Text("go to register page"),
+              onPressed: () async {
+                SharedPreferences preferences =
+                    await SharedPreferences.getInstance();
+                await preferences.setBool('isLogin', false).then(
+                      (_) => Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const RegisterPageView(),
+                          builder: ((context) => const RegisterPageView()),
                         ),
-                      ));
-            },
-            child: const Text("go to register page"),
-          ),
+                      ),
+                    );
+              }),
         ),
       ),
     );
